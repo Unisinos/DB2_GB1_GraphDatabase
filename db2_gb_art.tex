@@ -1,8 +1,7 @@
 % CHANGERS LOG
-% Dom 08/04 17:40 Dante
-%  Melhorias menores no abstract (um pouco mais biito)
-%  O que são "buscas constantes de informações"? É dito como se fosse algo concreto, mas eu achei confuso (l63)
-%  Estocasticidade ou Estocacidade?
+% Qui - 29/05/14 - Estrutura inicial e ajustes no geral do artigo
+%
+%
 \documentclass[10pt, conference, compsocconf]{IEEEtran}
 
 %Pacotes Gerais
@@ -20,47 +19,69 @@
 
 \begin{document}
 
-% >mateus: - ver se maintaining não fica melhor do que keeping
-% >iuri: oras eu acho que sim, mas devemos tirar o the entao antes do Quality
-\title{Cognitive Mesh Networks: Maintaining Transmission Quality Using Analysis and Prediction of Traffic with Artificial Neural Networks}
+\title{Graph Database: Neo4J da teoria Ã  pratica. }
 
 \author{\IEEEauthorblockN{Iuri Andreazza}
-\IEEEauthorblockA{Unidade Acadêmica de Graduação\\
+\IEEEauthorblockA{Unidade AcadÃªmica de GraduaÃ§Ã£o\\
 UNISINOS\\
-São Leopoldo, Brazil\\
+SÃ£o Leopoldo, Brazil\\
 iuri.andreazza@gmail.com}
 \and
-\IEEEauthorblockN{Dante Moreira Zaupa}
-\IEEEauthorblockA{Unidade Acadêmica de Graduação\\
+\IEEEauthorblockN{Eduardo Pereira da Silva}
+\IEEEauthorblockA{Unidade AcadÃªmica de GraduaÃ§Ã£o\\
 UNISINOS\\
-São Leopoldo, Brazil\\
-dantezco@gmail.com}
+SÃ£o Leopoldo, Brazil\\
+eduardobursa@gmail.com}
 \and
-\IEEEauthorblockN{Mateus Raeder}
-\IEEEauthorblockA{Unidade Acadêmica de Graduação\\
+\IEEEauthorblockN{Talita Audibert}
+\IEEEauthorblockA{Unidade AcadÃªmica de GraduaÃ§Ã£o\\
 UNISINOS\\
-São Leopoldo, Brazil\\
-mraeder@unisinos.br}
+SÃ£o Leopoldo, Brazil\\
+tali.audibert@gmail.com}
+\and
+\IEEEauthorblockN{Paulo GrÃ¤bin}
+\IEEEauthorblockA{Unidade AcadÃªmica de GraduaÃ§Ã£o\\
+UNISINOS\\
+SÃ£o Leopoldo, Brazil\\
+plgrabin@gmail.com}
 }
-
 
 \maketitle
 
 \begin{abstract}
-The need for greater quality of service demands more from the infrastructure of existing network models. Considering the growth rate of devices on the network requesting data constantly, these models will soon become obsolete due to their inability to provide constant access to the network without requiring the user to configure their devices each time the network changes. Mesh Network model provides constant access to the wide network, but it has several problems, such as the difficulty of maintaining the quality of services by providing links with speed and performance desired. In this paper we propose a new approach to package routing in the mesh model, in order to combine the flexibility of Artificial Neural Networks, aiming at maintaining network performance in the face of changing topology.
+
+
 
 \end{abstract}
 
 \begin{IEEEkeywords}
-Mesh Networks; Artificial Neural Networks; Routing Algorithms; Cognitive Routing;
+Graphs;Databases; Neo4j; No-SQL;
 
 \end{IEEEkeywords}
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction}\label{sec:intro}
+\section{IntroduÃ§Ã£o}\label{sec:intro}
 
-%seguindo o modelo do RA - A introdução já está boa e também contém um intro das redes mesh e redes neurais
+
+\subsection{OrganizaÃ§Ã£o}\label{sec:org}
+
+Este artigo estÃ¡ organizado da seguinte maneira, tendo que, na sessÃ£o ~\ref{sec:intro} temos o trecho introdutÃ³rio, 
+
+
+\section{Conceito}\label{sec:concept}
+
+
+\section{Abordagem PrÃ¡tica}\label{sec:pratica}
+
+
+\section{Trabalhos relacionados}\label{sec:rel}
+
+
+\section{ConclusÃ£o}\label{sec:con}
+
+
+%seguindo o modelo do RA - A introduï¿½ï¿½o jï¿½ estï¿½ boa e tambï¿½m contï¿½m um intro das redes mesh e redes neurais
 
 At the end of the 20th century and beginning of the 21st century, the evolution of computing and communication technologies made mobile computing and wireless computer networks widespread, which increased their presences in academic, industrial and home environments. This allows anyone to easily access computer networks and databases information. The main issue that stress wireless networks is the increasing presence of notebooks, cell phones and many other mobile devices that enjoy the infrastructure to access the Internet. With the availability of online services and tools for both desktop and mobile devices users, the need for constant information and connectivity becomes essential, as well as the quality of that information \cite{Zhu:1276870}.
 
@@ -75,14 +96,14 @@ With these new types of users joining the mesh infrastructure out of research en
 
 However, this growth of users inside the mesh creates a totally stochastic environment, which generates a great loss of quality in the routing process algorithms (in the maintenance of the data flow). This problem is a main factor for the resistance against large scale adoption of the mesh model, not allowing users to take advantage of its capabilities.
 
-%Introdução RNA
+%Introduï¿½ï¿½o RNA
 
-In the constant search for more flexible mechanisms, capable of adapting to the constant changes in topology (that are natural in a mesh network), we propose the use of Artificial Neural Networks (ANNs) to improve the mesh model packet routing process. ANNs have the ability for non-linear and parallel processing, which gives the capacity to process and classify data in a cognitive way with high efficiency. 
+In the constant search for more flexible mechanisms, capable of adapting to the constant changes in topology (that are natural in a mesh network), we propose the use of Artificial Neural Networks (ANNs) to improve the mesh model packet routing process. ANNs have the ability for non-linear and parallel processing, which gives the capacity to process and classify data in a cognitive way with high efficiency.
 
 To make them efficient, it is necessary to train the ANNs with a base set of scenarios and its expected results. This learning process is called ``supervised training'' and has as objective to prepare the internal structures with values (weights) of the ANNs to respond with the expected values whenever they find a known pattern \cite{Claudio:1996}.
 
 ANNs are built like parallel distributed systems, composed by small simple processing units: the artificial neurons. These neurons calculate mathematical functions, which are usually non-linear functions, and are organized in layers. Artificial neurons are interconnected by a large number of connections, which are usually unidirectional (see Figure~\ref{fig:rna_visao_classica}). There are still different models that use backpropagation connections, for example \cite{Simon:2001}.
-% >Dante: pra mim, essa última frase ficou meio solta.
+% >Dante: pra mim, essa ï¿½ltima frase ficou meio solta.
 
 \begin{figure}[h]
 	\centering
@@ -204,7 +225,7 @@ Such information about the client neighbouring nodes is obtained in the MACAddre
 
 \section{Simulation Results}
 
-% >Dante: "estruturas faraônicas"?
+% >Dante: "estruturas faraï¿½nicas"?
 To generate and evaluate the results we simulate a mesh network with some characteristics using the NS-3, a simulator based on discrete events for the community of researchers and educators. This simulator aims at providing an environment for the study of large-scale networks (for example, the Internet and huge structures), with controlled environments. NS-3 has the following features for running the simulations~\cite{NS3:1}.
 
 \begin{itemize}
@@ -225,7 +246,7 @@ An example scenario were designed to be configurable, so it can be changed to ge
 \begin{itemize}
 	\item \emph{x-size}: Width of the grid, default 6;
 	\item \emph{y-size}: Height of grid, default 6;
-	\item \emph{step}: Space on the grid edge, default 100m; 
+	\item \emph{step}: Space on the grid edge, default 100m;
 	\item \emph{step}: Time from randomization to the start of transmission of packets (0.1 second);
 	\item \emph{time}: Simulation time, default 100 seconds;
 	\item \emph{packet-interval}: Transmission interval of the packets, default 0.001 second;
@@ -246,14 +267,14 @@ The graphs presented serve as a basis for evaluating the use of neural networks 
     \label{fig:g1}
 \end{figure}
 
-% >iuri: Apresentar o gráfico do throughput da rede
+% >iuri: Apresentar o grï¿½fico do throughput da rede
 
-%A Figura~\ref{fig:g8} apresenta a média de atraso nas entregas de pacotes em cada fluxo de dados.
+%A Figura~\ref{fig:g8} apresenta a mï¿½dia de atraso nas entregas de pacotes em cada fluxo de dados.
 
 %\begin{figure}[h]
 %	\centering
 %	\includegraphics[width=0.5\textwidth]{./graphics/image008.png}
-%    \caption{ Média de entrega de pacotes.}
+%    \caption{ Mï¿½dia de entrega de pacotes.}
 %    \label{fig:g8}
 %\end{figure}
 
@@ -314,8 +335,8 @@ Figure~\ref{fig:g13} compares three simulations using ANN and a simulation of th
 
 
 
-% >Dante: Revê as últimas linhas aqui!
-% >Iuri: ok, revisto... (falar sobre a questão do overhead dos dados ... normalizados).
+% >Dante: Revï¿½ as ï¿½ltimas linhas aqui!
+% >Iuri: ok, revisto... (falar sobre a questï¿½o do overhead dos dados ... normalizados).
 The use of ANNs in the simulation adds a significant overhead so that the results presented appear to be worse than the trivial routing algorithms. However, it is considered a full-scale applicability and use of ANNs in hardware the probability that the results inherent in the simulation become much more attractive \cite{Akyildiz:2006:NGS:1162469.1162470}.
 
 
@@ -342,12 +363,12 @@ The simulations showed consistent results but require further study because in s
 % use section* for acknowledgement
 %\section*{Acknowledgment}
 
-%Eu gostaria de agradecer pelas revisões, Mateus e Dante assim como suas %contribuições na escrita deste trabalho .... nao sei o que escrever nesta seção.
+%Eu gostaria de agradecer pelas revisï¿½es, Mateus e Dante assim como suas %contribuiï¿½ï¿½es na escrita deste trabalho .... nao sei o que escrever nesta seï¿½ï¿½o.
 
-%(pedir para o Felipe corrigir também? seria uma boa)
+%(pedir para o Felipe corrigir tambï¿½m? seria uma boa)
 
-\bibliographystyle{./sbrn_iuri}
-\bibliography{./sbrn_iuri_abrv.bib,./sbrn_iuri.bib}
+\bibliographystyle{./db2_gb_art}
+\bibliography{./db2_gb_art_abrv.bib,./db2_gb_art.bib}
 
 %\begin{thebibliography}{1}
 

@@ -4,16 +4,10 @@ BIB=bibtex
 all: relatorio
 
 relatorio: sbrn_iuri.tex
-	${PDF} sbrn_iuri.tex
-	${BIB} sbrn_iuri
-	${PDF} sbrn_iuri.tex
-	${PDF} sbrn_iuri.tex
-	
-en: sbrn_iuri_fast_en.tex
-	${PDF} sbrn_iuri_fast_en.tex
-	${BIB} sbrn_iuri_fast_en
-	${PDF} sbrn_iuri_fast_en.tex
-	${PDF} sbrn_iuri_fast_en.tex
+	${PDF} db2_gb_art.tex
+	${BIB} db2_gb_art
+	${PDF} db2_gb_art.tex
+	${PDF} db2_gb_art.tex
 
 .PHONY: clean
 clean:
