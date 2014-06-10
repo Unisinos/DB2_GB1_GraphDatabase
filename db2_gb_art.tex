@@ -61,6 +61,14 @@ Some of these scenarios include: social networking, fraud detection, people/movi
 
 Another advantage when using a Graph database is that you can easily and more naturally model a domain using a whiteboard or a piece of paper. Specifically, nouns that are used become nodes, verbs become relationships, and adjectives and adverbs become properties.
 
+O modelo orientado a grafos possui três componentes básicos: os nós (são os vértices do grafo), os relacionamentos (são as arestas) e as propriedades (ou atributos) dos nós e relacionamentos. Neste caso, o banco de dados pode ser visto como um multigrafo rotulado e direcionado, onde cada par de nós pode ser conectado por mais de uma aresta. A Figura 4 apresenta um exemplo de grafo que representa os dados de uma aplicação que deseja manter informações relativas a locais de viagens e locais onde pessoas residem. Uma consulta relevante para esta aplicação seria: “Quais cidades 
+foram visitadas anteriormente (seja residindo ou viajando) por pessoas que viajaram para o Rio de Janeiro?”. No modelo relacional esta consulta poderia ser muito complexa devido a necessidade de múltiplas junções, o que poderia acarretar uma diminuição no desempenho da aplicação. Porém, por meio dos relacionamentos inerentes aos grafos, estas consultas tornam-se mais simples e diretas. 
+Ainda no exemplo da Figura 2.4. temos três pessoas: Berna, Hélio e Jonas, que são nós do grafo e estão conectados à cidades que ou já residiram ou visitaram. Por exemplo, Hélio morou em Fortaleza e Recife, e visitou Paraty e Rio de Janeiro. Para responder a pergunta acima, buscamos por todos os nós das pessoas que visitaram Rio de Janeiro, no caso Berna e Hélio. Agora observamos quais cidades foram visitadas ou resididas por Berna e Hélio, que no caso são: Fortaleza, Rio de Janeiro, Paraty, São Paulo, Recife e João Pessoa. 
+A vantagem de utilização do modelo baseado em grafos fica bastante clara quando consultas complexas são exigidas pelo usuário. Comparado ao modelo 
+relacional, que para estas situações pode ser muito custoso, o modelo orientado a grafos tem um ganho de performance, permitindo um melhor desempenho das aplicações. 
+
+
+
 Graph Database Example
 
 Let?s examine the following scenario and how we would structure it using a Graph Database: John is friends with Bob, and Bob is friends with Mark. Visually, this is how we could represent the scenario:
