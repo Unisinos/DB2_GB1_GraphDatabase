@@ -10,14 +10,14 @@
      
 \sloppy
 
-\title{Graph Database: Neo4J da teoria à pratica. }
+\title{Graph Database: Neo4J da teoria ï¿½ pratica. }
 
-\author{Eduardo Pereira da Silva\inst{1}, Iuri Andreazza\inst{1}, Paulo Gräbin\inst{1}, Talita Audibert\inst{1} }
+\author{Eduardo Pereira da Silva\inst{1}, Iuri Andreazza\inst{1}, Paulo Grï¿½bin\inst{1}, Talita Audibert\inst{1} }
 
 
 \address{Universidade do Vale dos Sinos
   (UNISINOS)\\
-  São Leopoldo -- RS -- Brasil
+  Sï¿½o Leopoldo -- RS -- Brasil
   \email{\{eduardobursa,iuri.andreazza,plgrabin,tali.audibert\}@gmail.com}
 }
 
@@ -38,34 +38,35 @@
 \end{resumo}
 
 
-\section{Introdução}\label{sec:intro}
+\section{Introduï¿½ï¿½o}\label{sec:intro}
 
 
-What is a Graph Database?
+O que Ã© um banco de dados orientado a grafos?
 
-A Graph Database is not a database to store graphics or images as its name may suggest. It?s a database that uses graph structures such as nodes, properties and edges to represent and store data. In addition, it allows you to represent any kind of data without the limitation of regular databases.
+Ã‰ um banco de dados que usa estruturas de grafos como nodos, propriedades e vÃ©rtices para representar e armazenar dados. AlÃ©m disso, ele permite que vocÃª represente qualquer tipo de dado sem a limitaÃ§Ã£o que os bancos de dados regulares tem.
 
-To better understand, let?s talk about each of these structures individually and what they represent:
+Para entender melhor, vamos falar de cada estrutura individualmente e o que elas representam:
 
-Node: A node can be used to represent any type of entity that you can think of, be it a business, a blog post, a location, an oil rig, a city, etc. Graph databases don?t care what type of data they?re representing.
+Nodo: Um nodo pode ser usado para representar qualquer tipo de entidade que vocÃª pode imaginar, seja um negÃ³cio, uma postagem em um blog, uma localidade, uma plataforma de petrÃ³leo, uma cidade, etc. NÃ£o importa o tipo de dado que esta sendo representado em banco de dados orientado a grafos.
 
-Properties: Properties, sometimes called attributes, are named values that relate to nodes. For example, if we take into consideration our City representation of a node, one of the properties would be ?name?, another would be ?population?, and so on.
+Propriedades: TambÃ©m chamado de atributos, sÃ£o valores nomeados relacionados aos nodos. Por exemplo, considerando nossa cidade como representaÃ§Ã£o de um nodo, uma propriedade poderia ser â€œnomeâ€, â€œpopulaÃ§Ã£oâ€, etc.
 
-Edges: Edges, sometimes called Relationships, connect nodes-to-nodes and organize them into arbitrary structures such as a Map, List or a Tree. It?s important to note that when a node is the start node of a relationship, the relationship from that node?s perspective will be an outgoing relationship. And when a node is at the end of a relationship, the relationship from that node?s perspective will be an incoming relationship. Understanding this will make it easier for you to follow the examples.
+VÃ©rtices: TambÃ©m chamado de relaÃ§Ãµes, conecta nodo com nodo e organiza em estruturas arbitrÃ¡rias assim como Mapeamento, Lista ou Ãrvore. Ã‰ importante notar que quando um nodo Ã© o nodo inicial de uma relaÃ§Ã£o, o relacionamento pela perspectiva do nodo serÃ¡ uma relaÃ§Ã£o de saÃ­da. E quando o nodo Ã© o Ãºltimo da relaÃ§Ã£o, o relacionamento pela perspectiva do nodo serÃ¡ uma relaÃ§Ã£o de entrada.
 
-What can a Graph Database be used for?
 
-There are many scenarios for which one could consider using a Graph Database. Before I list a few examples, as with any architectural and technical decision, you need to analyze all possible solutions. Then, you can select those that are best for you, according to your specifications.
+Para que um banco de dados orientado a grafos pode ser usado?
 
-Some of these scenarios include: social networking, fraud detection, people/movie/music recommendation, manufacturing, etc. Using the social networking example, it would be somewhat trivial to do something like ?given the fact that Bob is my friend, give me all friends that are friend?s of friend?s of friend?s of Bob?. This is possible because of the path-finding algorithms involved are easy to implement by traversing through the graph. Imagine doing that through a relational database? A nightmare!
+Existem vÃ¡rios cenÃ¡rios onde o banco de dados orientado a grafos pode ser usado. Antes de listar alguns exemplos, com qualquer decisÃ£o arquitetÃ´nica e tÃ©cnica, vocÃª deve analisar todas as soluÃ§Ãµes possÃ­veis. EntÃ£o vocÃª pode selecionar as que sÃ£o melhores de acordo com as suas especificaÃ§Ãµes.
 
-Another advantage when using a Graph database is that you can easily and more naturally model a domain using a whiteboard or a piece of paper. Specifically, nouns that are used become nodes, verbs become relationships, and adjectives and adverbs become properties.
+Alguns desses cenÃ¡rios incluem: redes sociais, detecÃ§Ã£o de fraudes, recomendaÃ§Ãµes de pessoas/filmes/mÃºsicas, manufatura, etc. Usando uma rede social como exemplo, seria de alguma forma trivial fazer algo como â€œdado o fato de que Bob Ã© meu amigo, dÃª-me todos os amigos que sÃ£o amigos dos amigos dos amigos de Bobâ€. Isso Ã© possÃ­vel pois os algoritmos de caminho de busca envolvidos sÃ£o fÃ¡ceis de implementar atravessando os grafos. Imagina fazer isso atravÃ©s de um banco relacional?
 
-O modelo orientado a grafos possui três componentes básicos: os nós (são os vértices do grafo), os relacionamentos (são as arestas) e as propriedades (ou atributos) dos nós e relacionamentos. Neste caso, o banco de dados pode ser visto como um multigrafo rotulado e direcionado, onde cada par de nós pode ser conectado por mais de uma aresta. A Figura 4 apresenta um exemplo de grafo que representa os dados de uma aplicação que deseja manter informações relativas a locais de viagens e locais onde pessoas residem. Uma consulta relevante para esta aplicação seria: “Quais cidades 
-foram visitadas anteriormente (seja residindo ou viajando) por pessoas que viajaram para o Rio de Janeiro?”. No modelo relacional esta consulta poderia ser muito complexa devido a necessidade de múltiplas junções, o que poderia acarretar uma diminuição no desempenho da aplicação. Porém, por meio dos relacionamentos inerentes aos grafos, estas consultas tornam-se mais simples e diretas. 
-Ainda no exemplo da Figura 2.4. temos três pessoas: Berna, Hélio e Jonas, que são nós do grafo e estão conectados à cidades que ou já residiram ou visitaram. Por exemplo, Hélio morou em Fortaleza e Recife, e visitou Paraty e Rio de Janeiro. Para responder a pergunta acima, buscamos por todos os nós das pessoas que visitaram Rio de Janeiro, no caso Berna e Hélio. Agora observamos quais cidades foram visitadas ou resididas por Berna e Hélio, que no caso são: Fortaleza, Rio de Janeiro, Paraty, São Paulo, Recife e João Pessoa. 
-A vantagem de utilização do modelo baseado em grafos fica bastante clara quando consultas complexas são exigidas pelo usuário. Comparado ao modelo 
-relacional, que para estas situações pode ser muito custoso, o modelo orientado a grafos tem um ganho de performance, permitindo um melhor desempenho das aplicações. 
+Outra vantagem usando banco de dados orientado a grafos Ã© que vocÃª pode fÃ¡cil e naturalmente modelar um domÃ­nio usando uma lousa ou um pedaÃ§o de papel.  Substantivos usados tornam-se nodos, verbos tornam-se relaÃ§Ãµes e adjetivos e advÃ©rbios tornam-se propriedades.
+
+O modelo orientado a grafos possui trï¿½s componentes bï¿½sicos: os nï¿½s (sï¿½o os vï¿½rtices do grafo), os relacionamentos (sï¿½o as arestas) e as propriedades (ou atributos) dos nï¿½s e relacionamentos. Neste caso, o banco de dados pode ser visto como um multigrafo rotulado e direcionado, onde cada par de nï¿½s pode ser conectado por mais de uma aresta. A Figura 4 apresenta um exemplo de grafo que representa os dados de uma aplicaï¿½ï¿½o que deseja manter informaï¿½ï¿½es relativas a locais de viagens e locais onde pessoas residem. Uma consulta relevante para esta aplicaï¿½ï¿½o seria: ï¿½Quais cidades 
+foram visitadas anteriormente (seja residindo ou viajando) por pessoas que viajaram para o Rio de Janeiro?ï¿½. No modelo relacional esta consulta poderia ser muito complexa devido a necessidade de mï¿½ltiplas junï¿½ï¿½es, o que poderia acarretar uma diminuiï¿½ï¿½o no desempenho da aplicaï¿½ï¿½o. Porï¿½m, por meio dos relacionamentos inerentes aos grafos, estas consultas tornam-se mais simples e diretas. 
+Ainda no exemplo da Figura 2.4. temos trï¿½s pessoas: Berna, Hï¿½lio e Jonas, que sï¿½o nï¿½s do grafo e estï¿½o conectados ï¿½ cidades que ou jï¿½ residiram ou visitaram. Por exemplo, Hï¿½lio morou em Fortaleza e Recife, e visitou Paraty e Rio de Janeiro. Para responder a pergunta acima, buscamos por todos os nï¿½s das pessoas que visitaram Rio de Janeiro, no caso Berna e Hï¿½lio. Agora observamos quais cidades foram visitadas ou resididas por Berna e Hï¿½lio, que no caso sï¿½o: Fortaleza, Rio de Janeiro, Paraty, Sï¿½o Paulo, Recife e Joï¿½o Pessoa. 
+A vantagem de utilizaï¿½ï¿½o do modelo baseado em grafos fica bastante clara quando consultas complexas sï¿½o exigidas pelo usuï¿½rio. Comparado ao modelo 
+relacional, que para estas situaï¿½ï¿½es pode ser muito custoso, o modelo orientado a grafos tem um ganho de performance, permitindo um melhor desempenho das aplicaï¿½ï¿½es. 
 
 
 
@@ -112,21 +113,21 @@ It integrates seamlessly with Lucene, providing full-text search to nodes and re
 
 
 
-\subsection{Organização}\label{sec:org}
+\subsection{Organizaï¿½ï¿½o}\label{sec:org}
 
-Este artigo está organizado da seguinte maneira, tendo que, na sessão ~\ref{sec:intro} temos o trecho introdutório, 
+Este artigo estï¿½ organizado da seguinte maneira, tendo que, na sessï¿½o ~\ref{sec:intro} temos o trecho introdutï¿½rio, 
 
 
 \section{Conceito}\label{sec:concept}
 
 
-\section{Abordagem Prática}\label{sec:pratica}
+\section{Abordagem Prï¿½tica}\label{sec:pratica}
 
 
 \section{Trabalhos relacionados}\label{sec:rel}
 
 
-\section{Conclusão}\label{sec:con}
+\section{Conclusï¿½o}\label{sec:con}
 
 
 
