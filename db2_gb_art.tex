@@ -89,7 +89,7 @@ Embora as relações sempre tem uma direção, você pode ignorar o sentido em que nã
 Note que um nodo pode ter um relacionamento com ele mesmo.
 Para melhorar ainda mais o gráfico transversal, todas as relações têm um tipo de relacionamento. Note que a palavra tipo é uma classificação. 
 
-Propriedades são pares de chave-valor onde o chave é uma string. Os valores das propriedades podem ser tanto um valor primitivo quanto um array de um tipo primitivo. Por exemplo String, int e int[].
+Propriedades são pares de chave-valor onde o chave é uma string. Os valores das propriedades podem ser tanto um valor primitivo quanto um array de um tipo primitivo. Por exemplo String, int e int[]~\cite{neo4j5}.
 
 Uma classificação é um um grafo nomeado usado para agrupar nodos em conjuntos; todos os nodos classificados são com a mesma classificação pertence ao mesmo conjunto. Muitas consultas podem funcionar com esses conjuntos em vez de todo o grafo, fazendo consultas mais fáceis de escrever e mais eficientes. Um nodo pode ser classificado com varios numeros de classificações, mesmo nenhum. Fazer classificações é opcional no grafo.
 
@@ -97,7 +97,7 @@ Um caminho é quando um ou mais nodos que se conectam através de relacionamentos,
 
 Atravessando um grafo significa visitar seus nodos, seguindo as relações de acordo com algumas regras.
 
-Neo4j é um banco de dados orientado a grafos com esquemas opcional. Você pode usar o Neo4j sem qualquer esquema. Você pode introduzi-lo opcionalmente para ganhar performance ou beneficios de modelagem. 
+Neo4j é um banco de dados orientado a grafos com esquemas opcional. Você pode usar o Neo4j sem qualquer esquema. Você pode introduzi-lo opcionalmente para ganhar performance ou beneficios de modelagem~\cite{neo4j4}. 
 
 
 \subsubsection{Resumo das relações}
@@ -116,7 +116,7 @@ Abaixo é listado as relações que dentro de um banco de dados orientado a grafos 
 
 \section{Abordagem Prática}\label{sec:pratica}
 
-Vamos examinar o seguinte cenário e como estruturariamos usando um banco de dados orientado a grafos: John é amigo de Bob, e Bob é amigo de Mark. Visualmente é assim que poderiamos representar o cenário:
+Vamos examinar o seguinte cenário e como estruturariamos usando um banco de dados orientado a grafos: Jonny é amigo de Paulo, e Paulo é amigo de Duda. Visualmente é assim que poderiamos representar o cenário:
 
 %figura amigos 
 \begin{figure}[ht]
@@ -128,7 +128,7 @@ Vamos examinar o seguinte cenário e como estruturariamos usando um banco de dado
 
 Note que a representação visual é basicamente como nos expressamos verbalmente, visivelmente demonstrado na figura~\ref{fig:amigos}, sendo um bom exemplo simples que podemos usar para comparar a implementação de um banco de dados tradicional versus um banco de dados orientado a grafos.
 
-Em uma estrutura SQL tradicional, cada linha na tabela de usuários representa um usuário, e cada linha na tabela de amigos representa uma relação entre dois usuários. Se decidirmos adicionar propriedades na tabela de usuários mais tarde, teriamos que alterar a estrutura da tabela. E se quiséssemos adicionar uma propriedade nova em um subconjunto de usuários apenas, mesmo assim teriamos que alterar toda a estrutura da tabela usuários, ou criar uma tabela nova para acomodar os valores novos somente para o subconjunto de usuários. Não é um cenário ideal quando lidamos com dezenas de milhões de registros.
+Em uma estrutura SQL tradicional, cada linha na tabela de usuários representa um usuário, e cada linha na tabela de amigos representa uma relação entre dois usuários. Se decidirmos adicionar propriedades na tabela de usuários mais tarde, teriamos que alterar a estrutura da tabela. E se quiséssemos adicionar uma propriedade nova em um subconjunto de usuários apenas, mesmo assim teriamos que alterar toda a estrutura da tabela usuários, ou criar uma tabela nova para acomodar os valores novos somente para o subconjunto de usuários. Não é um cenário ideal quando lidamos com dezenas de milhões de registros~\cite{neo4j4}.
 
 %figura 2 relacao.jpg
 \begin{figure}[ht]
@@ -141,7 +141,7 @@ Em uma estrutura SQL tradicional, cada linha na tabela de usuários representa um
 Por outro lado, um banco de dados orientado a grafos não tem um conjunto de estrutura ou esquema para os dados, basicamente é um banco NoSQL. Vamos entender o que o gráfico acima representa: cada nodo representa uma entidade (nesse caso um usuário) ~\ref{fig:tec}. Cada nodo contém valores das propriedades (nesse caso é o nome do usuário) e cada linha representa a relação entre os nodos. E para complementar o cenário descrito no exemplo do SQL tradicional, se decidirmos adicionar propriedades em um subconjunto de usuários, poderiamos facilmente executar essa ação em nível de nodo em vez de uma transação de uma tabela grande~\cite{neo4j2}.
 
 
-A codificação para uso disto é demasiado simples, como demostrado abaixo é possivel criar o grafo utilizando a estrutura adequada e realizar buscas no mesmo utilizando os atributos e relações que foram dados. O trecho de codigo exibido abaixo demonstra o uso para busca de pessoas que são amigos de uma pessoa que tenha no nome \textit{Jonny}, nesta facilidade de tratamento de dados as possibilidades existentes são muitas, sendo que é possivel criar um modelo de dominio orientado a relacionamentos.
+A codificação para uso disto é demasiado simples, como demostrado abaixo é possivel criar o grafo utilizando a estrutura adequada e realizar buscas no mesmo utilizando os atributos e relações que foram dados. O trecho de codigo exibido abaixo demonstra o uso para busca de pessoas que são amigos de uma pessoa que tenha no nome \textit{Jonny}, nesta facilidade de tratamento de dados as possibilidades existentes são muitas, sendo que é possivel criar um modelo de dominio orientado a relacionamentos~\cite{neo4j3}.
 \\
 \\
 \\

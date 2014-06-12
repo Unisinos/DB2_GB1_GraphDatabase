@@ -1,14 +1,33 @@
 \begin{thebibliography}{}
 
-\bibitem[Jackiw 2014]{neo4j2}
-Jackiw, T. (2014).
-\newblock Aprendendo neo4j.
-\newblock Disponível em
-  http://www.sitepoint.com/using-a-graph-database-with-ruby-part-i-introduction/.
+\bibitem[Bachman 2014]{neo4j4}
+Bachman, M. (2014).
+\newblock Modeling data in neo4j: Qualifying relationships.
+\newblock Disponível em http://java.dzone.com/articles/modelling-data-neo4j-0.
 
-\bibitem[Team 2014]{neo4j1}
-Team, N. (2014).
+\bibitem[Team 2014a]{neo4j5}
+Team, N. (2014a).
+\newblock Java tutorials.
+\newblock Disponível em
+  http://docs.neo4j.org/chunked/stable/tutorials-java-embedded-hello-world.html.
+
+\bibitem[Team 2014b]{neo4j1}
+Team, N. (2014b).
 \newblock Projeto graph database.
 \newblock Disponível em http://neo4j.com/docs/2.0.3/.
+
+\bibitem[Williams 2014a]{neo4j2}
+Williams, A. (2014a).
+\newblock Neo4j, a graph database for building recommendation engines, gets a
+  visual overhaul.
+\newblock Disponível em
+  http://techcrunch.com/2014/02/02/neo4j-a-graph-database-for-building-recommendation-engines-gets-a-visual-overhaul/.
+
+\bibitem[Williams 2014b]{neo4j3}
+Williams, A. (2014b).
+\newblock Neo4j, a graph database for building recommendation engines, gets a
+  visual overhaul.
+\newblock Disponível em
+  http://techcrunch.com/2014/02/02/neo4j-a-graph-database-for-building-recommendation-engines-gets-a-visual-overhaul/.
 
 \end{thebibliography}
