@@ -3,6 +3,7 @@
 \usepackage{sbc-template}
 
 \usepackage{graphicx,url}
+\usepackage{listings}
 
 %\usepackage[brazil]{babel}   
 \usepackage[latin1]{inputenc}  
@@ -10,7 +11,7 @@
      
 \sloppy
 
-\title{Graph Database: Neo4J da teoria a pratica. }
+\title{Graph Database: Neo4J teoria e uso. }
 
 \author{Eduardo Pereira da Silva\inst{1}, Iuri Andreazza\inst{1}, Paulo Gräbin\inst{1}, Talita Audibert\inst{1} }
 
@@ -48,37 +49,13 @@ Este artigo está organizado da seguinte maneira, tendo que, na sessão~\ref{sec:i
 
 Um banco de dados orientado a grafo não é um banco de dados para armazenar gráficos ou imagens como o nome pode sugerir. É um banco de dados que usa estruturas de grafos, como nós, propriedades e arestas para representar e armazenar dados. Além disso, ele permite que você represente qualquer tipo de dados, sem a limitação de bases de dados regulares, ou seja os relacionais tradicionais.
 
-Para entender melhor, vamos falar sobre cada uma dessas estruturas individualmente eo que eles representam:
+Para entender melhor, vamos falar sobre cada uma dessas estruturas individualmente eo que eles representam, possivel visualizar em um exemplo simples na figura~\ref{fig:grafo}:
 
 \textbf{Nó}: Um nó pode ser usado para representar qualquer tipo de entidade, seja ele uma empresa, um blog, um local, uma plataforma de petróleo, uma cidade. Um bando de dados orientado a grafos não se importa com o tipo de dados que se está sendo operado.
 
 \textbf{Propriedades}: Propriedades, às vezes chamados de atributos, são os valores nomeados que dizem respeito a nós. Por exemplo, se levarmos em consideração a representação da cidade em um nó, uma das propriedades seria "nome", outra seria "população", e assim por diante.
 
 \textbf{Arestas}: Arestas, às vezes chamados de Relacionamentos, serve para conectar os nós e organizá-los em estruturas arbitrárias, como um mapa, lista ou uma árvore. É importante notar que quando um nó é o nó de início de uma relação, a relação do ponto de vista de que o nó será uma relação de saída, porém quando um nó está no fim de uma relação, será uma relação de entrada.
-
-\subsection{SQL Tradicional}
-
-Em uma estrutura SQ: tradicional, cada tupla na tabela representa uma informação na qual pode ser relacionada com outras tuplas em outras tabelas. Se for decidido adicionar propriedades para as tabelas em outro momento será necessário usar instruções DML para alterar a estrutura da tabela e tratar caso a caso em caso de existencia de restrições e outros eventos relacionados com suas propriedades e mesmo que se fosse preciso adicionar propriedades apenas para algumas tuplas da tabela será necessário igualmente alterar a tabela ou mesmo criar uma nova estrutura para comportar esse novo conjunto de informações, este cenário não é bom quando é existem milhões de registros que necessitam de dados especificos.
-
-\subsection{Graph Database}
-
-Neo4j é a applicação lider em banco de dados orientados à grafos sendo suportado comercialmente e tendo sua versão \textit{open-source} como fonte de fomento para novos usos assim chamando a comunidade para dar suporte a ferramenta. As principais caracteristicas tem como base a representação intuitiva de dados usando um modelo orientado a grafo. A portabilidade para um número de linguagens de programação, incluindo Ruby, Python e Java. Capacidades de um SGBD, armazenamento nativo completamente otimizado para armazenar estruturas dos grafos para com o máximo de desempenho e escalabilidade. Escalabilidade maciça, podendo lidar com grafos de vários bilhões de nós / relações / propriedades em uma única máquina. Fácil de usar e conveniente possui uma API orientada a objetos. Com grafos grandes não cabem em memória, utiliza um mecanismo de persistencia de alta velocidade que possibilita varreduras em nós em perda de desempenho com o mecanismo transacional funcional. Quadro travessia poderosa para travessias de alta velocidade no espaço de nó. Otimizado para dados altamente conectados. Pegada pequena, somente cerca de 750k arquivo jar. Ele fornece uma interface REST para linguagens não suportadas nativamente. É capaz de atravessar mais de 1000 níveis de profundidade em velocidades de milissegundos e se integra perfeitamente com o Lucene, proporcionando pesquisa de texto completo para nós e relacionamentos, incluindo consultas de frase, consultas curinga, consultas de proximidade, a pesquisa classificatórias e muito mais.
-
-\subsubsection{Estrutura da base de dados}
-
-
-On the other hand, a Graph database has no set structure or schema for the data, much like a NoSQL database. Now, let?s understand what the graph above is representing: each node represents an entity ? a User in our case; each node contains property values, in this case it?s the User?s name; and each line represents a relationship between the nodes. This is as simple as it gets. And to complement the scenario described in the traditional SQL example, if we did decide to add additional properties to a subset of users, we could easily perform this action on a per-node level instead of a table-wide transaction.
-
-grafo
-
-
-\section{Abordagem Prática}\label{sec:pratica}
-
-Um exemplo prático
-
-Let?s examine the following scenario and how we would structure it using a Graph Database: John is friends with Bob, and Bob is friends with Mark. Visually, this is how we could represent the scenario:
-
-You notice that the visual representation is pretty much how we verbally expressed our scenario. This is a very simple example that we can use to compare the implementation of a traditional SQL database structure versus a Graph database structure:
 
  \begin{figure}[ht]
  \centering
@@ -88,105 +65,105 @@ You notice that the visual representation is pretty much how we verbally express
 \end{figure}
 
 
- \begin{figure}[ht]
+\subsection{SQL Tradicional}
+
+Em uma estrutura SQ: tradicional, cada tupla na tabela representa uma informação na qual pode ser relacionada com outras tuplas em outras tabelas. Se for decidido adicionar propriedades para as tabelas em outro momento será necessário usar instruções DML para alterar a estrutura da tabela e tratar caso a caso em caso de existencia de restrições e outros eventos relacionados com suas propriedades e mesmo que se fosse preciso adicionar propriedades apenas para algumas tuplas da tabela será necessário igualmente alterar a tabela ou mesmo criar uma nova estrutura para comportar esse novo conjunto de informações, este cenário não é bom quando é existem milhões de registros que necessitam de dados especificos.
+
+\subsection{Graph Database}
+
+Neo4j é a applicação lider em banco de dados orientados à grafos sendo suportado comercialmente e tendo sua versão \textit{open-source} como fonte de fomento para novos usos assim chamando a comunidade para dar suporte a ferramenta. As principais caracteristicas tem como base a representação intuitiva de dados usando um modelo orientado a grafo. A portabilidade para um número de linguagens de programação, incluindo Ruby, Python e Java. Capacidades de um SGBD, armazenamento nativo completamente otimizado para armazenar estruturas dos grafos para com o máximo de desempenho e escalabilidade. Escalabilidade maciça, podendo lidar com grafos de vários bilhões de nós / relações / propriedades em uma única máquina. Fácil de usar e conveniente possui uma API orientada a objetos. Com grafos grandes não cabem em memória, utiliza um mecanismo de persistencia de alta velocidade que possibilita varreduras em nós em perda de desempenho com o mecanismo transacional funcional. Quadro travessia poderosa para travessias de alta velocidade no espaço de nó. Otimizado para dados altamente conectados. Pegada pequena, somente cerca de 750k arquivo jar. Ele fornece uma interface REST para linguagens não suportadas nativamente. É capaz de atravessar mais de 1000 níveis de profundidade em velocidades de milissegundos e se integra perfeitamente com o Lucene, proporcionando pesquisa de texto completo para nós e relacionamentos, incluindo consultas de frase, consultas curinga, consultas de proximidade, a pesquisa classificatórias e muito mais~\cite{neo4j1}.
+
+Existem vários cenários onde o banco de dados orientado a grafos pode ser usado. Antes de listar alguns exemplos, com qualquer decisão arquitetônica e técnica, deve-se analisar todas as soluções possíveis, caso nenhuma representa um ganho significativo ou uma simplicidade de uso, ou a mesma exigir a flexibilidade de representação do dado, pode-se pensar em adotar um banco orientado a grafos.
+
+Alguns desses cenários incluem: redes sociais, detecção de fraudes, recomendações de pessoas/filmes/músicas, manufatura, etc. Usando uma rede social como exemplo, seria de alguma forma trivial fazer algo como ?dado o fato de que Bob é meu amigo, dê-me todos os amigos que são amigos dos amigos dos amigos de Bob?. Isso é possível pois os algoritmos de caminho de busca envolvidos são fáceis de implementar atravessando os grafos.
+
+Outra vantagem usando banco de dados orientado a grafos é que você pode fácil e naturalmente modelar um domínio usando uma lousa ou um pedaço de papel.  Substantivos usados tornam-se nodos, verbos tornam-se relações e adjetivos e advérbios tornam-se propriedades.
+
+\subsubsection{Estrutura da base de dados}
+
+
+As unidades fundamentais que formam um grafo são nodos e relacionamentos. Em Neo4j tanto nodos quanto relações podem conter propriedades.
+Os relacionamentos entre nodos é uma parte chave de um banco de dados orientado a grafos. Eles permitem buscas relacionadas aos dados.
+Um relacionamento conecta dois nodos, e é a garantia de ter um nodo de inicio e fim válidos. Um relacionamento sempre tem uma direção, pode ser visto como saída e entrada relacionado à um nodo, que é útil quando percorremos um grafo. 
+Embora as relações sempre tem uma direção, você pode ignorar o sentido em que não é útil em sua aplicação.
+Note que um nodo pode ter um relacionamento com ele mesmo.
+Para melhorar ainda mais o gráfico transversal, todas as relações têm um tipo de relacionamento. Note que a palavra tipo é uma classificação. 
+
+Propriedades são pares de chave-valor onde o chave é uma string. Os valores das propriedades podem ser tanto um valor primitivo quanto um array de um tipo primitivo. Por exemplo String, int e int[].
+
+Uma classificação é um um grafo nomeado usado para agrupar nodos em conjuntos; todos os nodos classificados são com a mesma classificação pertence ao mesmo conjunto. Muitas consultas podem funcionar com esses conjuntos em vez de todo o grafo, fazendo consultas mais fáceis de escrever e mais eficientes. Um nodo pode ser classificado com varios numeros de classificações, mesmo nenhum. Fazer classificações é opcional no grafo.
+
+Um caminho é quando um ou mais nodos que se conectam através de relacionamentos, geralmente recuperados como uma consulta ou um resultado transversal.
+
+Atravessando um grafo significa visitar seus nodos, seguindo as relações de acordo com algumas regras.
+
+Neo4j é um banco de dados orientado a grafos com esquemas opcional. Você pode usar o Neo4j sem qualquer esquema. Você pode introduzi-lo opcionalmente para ganhar performance ou beneficios de modelagem. 
+
+
+\subsubsection{Resumo das relações}
+
+Abaixo é listado as relações que dentro de um banco de dados orientado a grafos pode ter:
+\begin{itemize}
+\item Um Grafo grava dados em Nodos os quais tem Propriedades.
+\item Nodos são organizados por Relacionamentos os quais também tem Propriedades.
+\item Nodos são agrupados por Classificações  dentro de  Conjuntos.
+\item Uma Transversal navega em um Grafo; Identifica caminhos os quais ordenam Nodos.
+\item Um índice mapeia de propriedades tanto para Nodos ou Relações
+\item Um Banco de Dados Orientado a Grafos gerencia um Grafo e também gerencia Índices relacionados.
+\end{itemize}
+
+
+
+\section{Abordagem Prática}\label{sec:pratica}
+
+Vamos examinar o seguinte cenário e como estruturariamos usando um banco de dados orientado a grafos: John é amigo de Bob, e Bob é amigo de Mark. Visualmente é assim que poderiamos representar o cenário:
+
+%figura amigos 
+\begin{figure}[ht]
  \centering
- \includegraphics[width=.5\textwidth]{ExemploEstruturaGrafos.png}
- \caption{Exemplo mais complexo de um grafo}
-\label{fig:grafo1}
+ \includegraphics[width=.5\textwidth]{amigos.jpg}
+ \caption{Estrutura do grafo representando ligações de amizade entre amigos}
+\label{fig:amigos}
 \end{figure}
 
-\section{Trabalhos relacionados}\label{sec:rel}
+Note que a representação visual é basicamente como nos expressamos verbalmente, visivelmente demonstrado na figura~\ref{fig:amigos}, sendo um bom exemplo simples que podemos usar para comparar a implementação de um banco de dados tradicional versus um banco de dados orientado a grafos.
+
+Em uma estrutura SQL tradicional, cada linha na tabela de usuários representa um usuário, e cada linha na tabela de amigos representa uma relação entre dois usuários. Se decidirmos adicionar propriedades na tabela de usuários mais tarde, teriamos que alterar a estrutura da tabela. E se quiséssemos adicionar uma propriedade nova em um subconjunto de usuários apenas, mesmo assim teriamos que alterar toda a estrutura da tabela usuários, ou criar uma tabela nova para acomodar os valores novos somente para o subconjunto de usuários. Não é um cenário ideal quando lidamos com dezenas de milhões de registros.
+
+%figura 2 relacao.jpg
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=.5\textwidth]{relacao.jpg}
+ \caption{Estrutura do grafo representando ligações de amizade entre amigos}
+\label{fig:tec}
+\end{figure}
+
+Por outro lado, um banco de dados orientado a grafos não tem um conjunto de estrutura ou esquema para os dados, basicamente é um banco NoSQL. Vamos entender o que o gráfico acima representa: cada nodo representa uma entidade (nesse caso um usuário) ~\ref{fig:tec}. Cada nodo contém valores das propriedades (nesse caso é o nome do usuário) e cada linha representa a relação entre os nodos. E para complementar o cenário descrito no exemplo do SQL tradicional, se decidirmos adicionar propriedades em um subconjunto de usuários, poderiamos facilmente executar essa ação em nível de nodo em vez de uma transação de uma tabela grande~\cite{neo4j2}.
+
+
+A codificação para uso disto é demasiado simples, como demostrado abaixo é possivel criar o grafo utilizando a estrutura adequada e realizar buscas no mesmo utilizando os atributos e relações que foram dados. O trecho de codigo exibido abaixo demonstra o uso para busca de pessoas que são amigos de uma pessoa que tenha no nome \textit{Jonny}, nesta facilidade de tratamento de dados as possibilidades existentes são muitas, sendo que é possivel criar um modelo de dominio orientado a relacionamentos.
+\\
+\\
+\\
+\begin{lstlisting}
+for (Relationship r : pessoas.getRelationships(amigos)) { 
+  if ((int) r.getProperty("nome").contains("Jonny")) { 
+    Node primoAmigo = r.getStartNode(); //Algo com o node
+  } 
+}
+\end{lstlisting}
+
 
 
 \section{Conclusão}\label{sec:con}
 
+Ao utilizar um banco de dados orientado a grafos é possivel notar que se a necessidade de representação é em demasia abstrata ou não administravel em seus requisitos, podemos adotar este modelo na qual é possivel extrair relações e funcionamentos no qual um banco de dados relacional tradicional não seria possivel ou no qual se perderia muito tempo criando a representação funcional destes dados. Sua utilziação é facil e rápida tendo suporte a várias plataformas até mesmo para linguagens que não são consideradas nativas é possivel extrair beneficios do mesmo. Contudo não é indicado e nem adequando o uso do mesmo na expressão de relações que são superficiais ou simplistas, isto pode causa um \textit{overhead} no uso e uma performance baixa.
 
 
-% 
-% \section{General Information}
-% 
-% \section{First Page} \label{sec:firstpage}
-% 
-% should be written in boldface and must precede the text.
-% 
-% \section{CD-ROMs and Printed Proceedings}
-% 
-% In some conferences, the papers are published on CD-ROM while only the
-% abstract is published in the printed Proceedings. In this case, authors are
-% invited to prepare two final versions of the paper. One, complete, to be
-% published on the CD and the other, containing only the first page, with
-% abstract and ``resumo'' (for papers in Portuguese).
-% 
-% \section{Sections and Paragraphs}
-% 
-% Section titles must be in boldface, 13pt, flush left. There should be an extra
-% 12 pt of space before each title. Section numbering is optional. The first
-% paragraph of each section should not be indented, while the first lines of
-% subsequent paragraphs should be indented by 1.27 cm.
-% 
-% \subsection{Subsections}
-% 
-% The subsection titles must be in boldface, 12pt, flush left.
-% 
-% \section{Figures and Captions}\label{sec:figs}
-% 
-% 
-% Figure and table captions should be centered if less than one line
-% (Figure~\ref{fig:exampleFig1}), otherwise justified and indented by 0.8cm on
-% both margins, as shown in Figure~\ref{fig:exampleFig2}. The caption font must
-% be Helvetica, 10 point, boldface, with 6 points of space before and after each
-% caption.
-% 
-% \begin{figure}[ht]
-% \centering
-% \includegraphics[width=.5\textwidth]{fig1.jpg}
-% \caption{A typical figure}
-% \label{fig:exampleFig1}
-% \end{figure}
-% 
-% \begin{figure}[ht]
-% \centering
-% \includegraphics[width=.3\textwidth]{fig2.jpg}
-% \caption{This figure is an example of a figure caption taking more than one
-%   line and justified considering margins mentioned in Section~\ref{sec:figs}.}
-% \label{fig:exampleFig2}
-% \end{figure}
-% 
-% In tables, try to avoid the use of colored or shaded backgrounds, and avoid
-% thick, doubled, or unnecessary framing lines. When reporting empirical data,
-% do not use more decimal digits than warranted by their precision and
-% reproducibility. Table caption must be placed before the table (see Table 1)
-% and the font used must also be Helvetica, 10 point, boldface, with 6 points of
-% space before and after each caption.
-% 
-% \begin{table}[ht]
-% \centering
-% \caption{Variables to be considered on the evaluation of interaction
-%   techniques}
-% \label{tab:exTable1}
-% \includegraphics[width=.7\textwidth]{table.jpg}
-% \end{table}
-% 
-% \section{Images}
-% 
-% All images and illustrations should be in black-and-white, or gray tones,
-% excepting for the papers that will be electronically available (on CD-ROMs,
-% internet, etc.). The image resolution on paper should be about 600 dpi for
-% black-and-white images, and 150-300 dpi for grayscale images.  Do not include
-% images with excessive resolution, as they may take hours to print, without any
-% visible difference in the result. 
 
-%\section{References}
 
-%Bibliographic references must be unambiguous and uniform.  We recommend giving
-%the author names references in brackets, e.g. \cite{knuth:84},
-%\cite{boulic:91}, and \cite{smith:99}.
-
-%The references must be listed using 12 point font size, with 6 points of space
-%before each reference. The first line of each reference should not be
-%indented, while the subsequent should be indented by 0.5 cm.
 
 \bibliographystyle{sbc}
-\bibliography{sbc-template}
+\bibliography{db2_gb_art}
 
 \end{document}

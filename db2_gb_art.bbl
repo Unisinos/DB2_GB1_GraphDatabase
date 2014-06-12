@@ -1,20 +1,14 @@
 \begin{thebibliography}{}
 
-\bibitem[Boulic and Renault 1991]{boulic:91}
-Boulic, R. and Renault, O. (1991).
-\newblock 3d hierarchies for animation.
-\newblock In Magnenat-Thalmann, N. and Thalmann, D., editors, {\em New Trends
-  in Animation and Visualization}. John Wiley {\&} Sons ltd.
+\bibitem[Jackiw 2014]{neo4j2}
+Jackiw, T. (2014).
+\newblock Aprendendo neo4j.
+\newblock Disponível em
+  http://www.sitepoint.com/using-a-graph-database-with-ruby-part-i-introduction/.
 
-\bibitem[Knuth 1984]{knuth:84}
-Knuth, D.~E. (1984).
-\newblock {\em The {\TeX} Book}.
-\newblock Addison-Wesley, 15th edition.
-
-\bibitem[Smith and Jones 1999]{smith:99}
-Smith, A. and Jones, B. (1999).
-\newblock On the complexity of computing.
-\newblock In Smith-Jones, A.~B., editor, {\em Advances in Computer Science},
-  pages 555--566. Publishing Press.
+\bibitem[Team 2014]{neo4j1}
+Team, N. (2014).
+\newblock Projeto graph database.
+\newblock Disponível em http://neo4j.com/docs/2.0.3/.
 
 \end{thebibliography}
